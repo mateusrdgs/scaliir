@@ -1,7 +1,7 @@
 {
   "name": "webpack-react",
   "version": "0.0.0",
-  "description": "Just another webpack+react boilerplate",
+  "description": "Just another webpack + react boilerplate",
   "main": "index.js",
   "repository": "git@github.com:mateusrdgs/webpack-react.git",
   "author": "Mateus Rodrigues <devrdgs@gmail.com>",
