@@ -20,7 +20,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './template/index.html',
       title: 'Webpack + react'
     })
   ]
