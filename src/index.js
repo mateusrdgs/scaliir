@@ -9,4 +9,4 @@ const App = () => {
   )
 };
 
-ReactDOM.render(App, rootEl);
+ReactDOM.render(<App />, rootEl);
