@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, '../', 'dist')
   },
   module: {
     rules: [
@@ -27,7 +27,6 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './template/index.html',
-      title: 'Webpack + react'
     }),
     new webpack.ProvidePlugin({
       'React': 'react'
