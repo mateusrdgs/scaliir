@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --open --config webpack/webpack.dev.js",
+    "start": "node_modules/.bin/webpack-dev-server --hot --open --config webpack/webpack.dev.js",
     "build": "node_modules/.bin/webpack --config webpack/webpack.prod.js"
   },
   "devDependencies": {
@@ -17,6 +17,7 @@
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^2.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "react-hot-loader": "^4.8.4",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.1",
     "webpack-dev-server": "^3.3.1",

@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+
+import AppLayout from './layout/AppLayout';
 
 const rootEl = document.getElementById('root');
 
-const App = () => {
-  return (
-    <div>Hello world</div>
+const render = Component => {
+  ReactDOM.render(
+    <AppContainer>
+      <Component />
+    </AppContainer>,
+    rootEl
   )
 };
 
-ReactDOM.render(<App />, rootEl);
+render(AppLayout);
+
+if (module.hot) {
+  module.hot.accept('./layout/AppLayout.js', () => {
+    const NextAppLayout = require('./layout/AppLayout').default;
+    render(NextAppLayout);
+  });
+}
