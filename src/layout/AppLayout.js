@@ -1,7 +1,7 @@
+import './app-layout.styl';
+
 const AppLayout = () => {
-  return (
-    <div>Hello world!</div>
-  )
+	return <main className="app-layout">Hello world!</main>;
 };
 
 export default AppLayout;
