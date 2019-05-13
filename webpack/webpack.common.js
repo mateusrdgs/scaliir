@@ -18,23 +18,24 @@ module.exports = {
 				test: /\.css$/,
 				use: isProduction
 					? [
-							{
-								loader: MiniCssExtractPlugin.loader,
-							},
-							'css-loader',
-					  ]
+						{
+							loader: MiniCssExtractPlugin.loader,
+						},
+						'css-loader',
+					]
 					: ['style-loader', 'css-loader'],
 			},
 			{
 				test: /\.styl$/,
 				use: isProduction
 					? [
-							{
-								loader: MiniCssExtractPlugin.loader,
-							},
-							'css-loader',
-							'stylus-loader',
-					  ]
+						{
+							loader: MiniCssExtractPlugin.loader,
+						},
+						'css-loader',
+						'postcss-loader',
+						'stylus-loader',
+					]
 					: ['style-loader', 'css-loader', 'stylus-loader'],
 			},
 			{
