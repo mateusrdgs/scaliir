@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const common = require('./webpack.common');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = merge(common, {
 	mode: 'production',
@@ -21,5 +22,6 @@ module.exports = merge(common, {
 				},
 			},
 		},
-	},
+		minimizer: [new OptimizeCSSAssetsPlugin()]
+	}
 });
