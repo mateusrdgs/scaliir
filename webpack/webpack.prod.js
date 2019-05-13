@@ -3,7 +3,7 @@ const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const common = require('./webpack.common');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -25,8 +25,22 @@ module.exports = merge(common, {
     },
     minimizer: [
       new OptimizeCSSAssetsPlugin(),
-      new UglifyJsPlugin({
-        parallel: true
+      new TerserWebpackPlugin({
+        exclude: [/\.min\.js$/gi],
+        parallel: true,
+        terserOptions: {
+          compress: {
+            warnings: false,
+            pure_getters: true,
+            unsafe: true,
+            unsafe_comps: true,
+          },
+          ie8: false,
+          output: {
+            comments: false
+          },
+          safari10: false,
+        },
       })
     ]
   }
