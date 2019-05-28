@@ -18,11 +18,13 @@ module.exports = {
     allowImportExportEverywhere: true,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react'],
   rules: {
-    "react/jsx-filename-extension": 0,
-    "react/react-in-jsx-scope": 0,
+    'import/no-unresolved': 0,
+    'arrow-body-style': 0,
+    'global-require': 0,
+    'react/jsx-filename-extension': 0,
+    'react/react-in-jsx-scope': 0,
+    'react/prop-types': 0,
   },
 };
