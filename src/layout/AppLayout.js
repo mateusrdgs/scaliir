@@ -1,5 +1,7 @@
 import './app-layout.styl';
 
-const AppLayout = () => <main className="app-layout">Just another React Boilerplate</main>;
+const AppLayout = ({ children }) => (
+  <main className="app-layout">{children}</main>
+);
 
 export default AppLayout;

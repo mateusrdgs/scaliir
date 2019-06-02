@@ -1,23 +1,28 @@
 import ReactDOM from 'react-dom';
 import 'normalize.css';
 
-import AppLayout from './layout/AppLayout';
+import RootComponent from 'components/RootComponent';
+import routes from './routes';
 
 const rootEl = document.getElementById('root');
-
-const render = (Component) => {
-  ReactDOM.render(
-    <Component />,
-    rootEl,
-  );
+const rootComponentProps = {
+  routes,
 };
 
-render(AppLayout);
+
+const render = Component => ({ ...props }) => {
+  ReactDOM.render(<Component {...props} />, rootEl);
+};
+
+render(RootComponent)({ ...rootComponentProps });
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
-  module.hot.accept('./layout/AppLayout.js', () => {
-    // eslint-disable-next-line global-require
-    const NextAppLayout = require('./layout/AppLayout').default;
-    render(NextAppLayout);
+  module.hot.accept('./routes', () => {
+    const nextPropsRoutes = require('./routes').default;
+    const nextProps = {
+      ...rootComponentProps,
+      routes: nextPropsRoutes,
+    };
+    render(RootComponent)({ ...nextProps });
   });
 }

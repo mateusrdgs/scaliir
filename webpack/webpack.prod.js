@@ -4,10 +4,17 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const common = require('./webpack.common');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+const generateStatsFile = process.env.ANALYZE_BUNDLE === 'true';
 
 module.exports = merge(common, {
   mode: 'production',
   plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+      generateStatsFile
+    }),
     new CleanWebpackPlugin(),
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
