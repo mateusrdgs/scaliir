@@ -1,0 +1,18 @@
+.loader
+  animation spinning 2.3s linear infinite
+  border-radius 50%
+  border-top 15px solid #0984e3
+  border-right @border-top
+  border-bottom 15px solid transparent
+  border-left @border-top
+  height 100px
+  width @height
+
+@keyframes spinning
+  0%
+    transform scale(1) rotate(0deg)
+  50%
+    transform scale(.8) rotate(180deg)
+  100%
+    transform scale(1) rotate(360deg)
+
