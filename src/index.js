@@ -1,14 +1,16 @@
 import ReactDOM from 'react-dom';
 import 'normalize.css';
 
-import RootComponent from 'components/RootComponent';
+import RootComponent from './components/RootComponent';
+import startStore from './store';
 import routes from './routes';
 
 const rootEl = document.getElementById('root');
+const store = startStore();
 const rootComponentProps = {
   routes,
+  store,
 };
-
 
 const render = Component => ({ ...props }) => {
   ReactDOM.render(<Component {...props} />, rootEl);
