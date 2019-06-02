@@ -10,7 +10,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: '[name].[hash].js',
-    path: path.resolve(__dirname, '../', 'dist'),
+    path: path.resolve(__dirname, '../', 'build'),
   },
   module: {
     rules: [
@@ -47,7 +47,6 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'react-dom': '@hot-loader/react-dom',
       'components': path.resolve(__dirname, '../src/components'),
       'elements': path.resolve(__dirname, '../src/elements'),
       'layout': path.resolve(__dirname, '../src/layout'),
