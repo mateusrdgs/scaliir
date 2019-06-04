@@ -1,30 +1,30 @@
-import ReactDOM from 'react-dom';
-import 'normalize.css';
+import ReactDOM from 'react-dom'
+import 'normalize.css'
 
-import RootComponent from './components/RootComponent';
-import startStore from './store';
-import routes from './routes';
+import RootComponent from './components/RootComponent'
+import startStore from './store'
+import routes from './routes'
 
-const rootEl = document.getElementById('root');
-const store = startStore();
+const rootEl = document.getElementById('root')
+const store = startStore()
 const rootComponentProps = {
   routes,
   store,
-};
+}
 
 const render = Component => ({ ...props }) => {
-  ReactDOM.render(<Component {...props} />, rootEl);
-};
+  ReactDOM.render(<Component {...props} />, rootEl)
+}
 
-render(RootComponent)({ ...rootComponentProps });
+render(RootComponent)({ ...rootComponentProps })
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
   module.hot.accept('./routes', () => {
-    const nextPropsRoutes = require('./routes').default;
+    const nextPropsRoutes = require('./routes').default
     const nextProps = {
       ...rootComponentProps,
       routes: nextPropsRoutes,
-    };
-    render(RootComponent)({ ...nextProps });
-  });
+    }
+    render(RootComponent)({ ...nextProps })
+  })
 }
