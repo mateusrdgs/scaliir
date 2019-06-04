@@ -9,9 +9,11 @@ const rootComponentProps = {
   routes,
 };
 
-
 const render = Component => ({ ...props }) => {
-  ReactDOM.render(<Component {...props} />, rootEl);
+  ReactDOM.render(
+      <Component {...props} />
+    , rootEl
+  );
 };
 
 render(RootComponent)({ ...rootComponentProps });
