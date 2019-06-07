@@ -1,11 +1,12 @@
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
-const RootComponent = ({ routes }) => {
+const RootComponent = ({ routes, store }) => {
   return (
-    <Router>
-      {routes}
-    </Router>
-  );
-};
+    <Provider store={store}>
+      <BrowserRouter>{routes}</BrowserRouter>
+    </Provider>
+  )
+}
 
-export default RootComponent;
+export default RootComponent

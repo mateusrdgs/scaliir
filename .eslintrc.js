@@ -2,11 +2,9 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    node: true
+    node: true,
   },
-  extends: [
-    "react-app"
-  ],
+  extends: ['react-app'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -18,4 +16,4 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
   },
-};
+}

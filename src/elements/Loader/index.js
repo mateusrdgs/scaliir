@@ -1,9 +1,7 @@
-import './loader.styl';
+import './loader.styl'
 
 const Loader = () => {
-  return (
-    <div className="loader" />
-  );
-};
+  return <div className='loader' />
+}
 
-export default Loader;
+export default Loader
