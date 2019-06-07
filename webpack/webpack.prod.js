@@ -71,7 +71,11 @@ module.exports = merge(common, {
       },
     },
     minimizer: [
-      new OptimizeCSSAssetsPlugin(),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorPluginOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }],
+        },
+      }),
       new TerserWebpackPlugin({
         exclude: [/\.min\.js$/gi],
         parallel: true,
