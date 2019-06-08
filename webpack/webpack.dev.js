@@ -1,8 +1,10 @@
+const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const common = require('./webpack.common')
 const postStylus = require('poststylus')
 const rupture = require('rupture')
+
+const common = require('./webpack.common')
 
 module.exports = merge(common, {
   mode: 'development',
@@ -37,7 +39,7 @@ module.exports = merge(common, {
     }),
   ],
   devServer: {
-    contentBase: 'build',
+    contentBase: path.resolve(__dirname, '../', 'build'),
     historyApiFallback: true,
   },
   devtool: 'inline-source-map',
