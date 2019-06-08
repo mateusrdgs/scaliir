@@ -1,11 +1,10 @@
-import noop from 'utils/noop';
+import noop from 'utils/noop'
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.NODE_ENV === 'development'
 
 /* eslint-disable no-underscore-dangle */
-const devtools = isDevelopment && window
-  ? window.__REDUX_DEVTOOLS_EXTENSION__
-  : noop;
+const devtools =
+  isDevelopment && window && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__ : noop
 /* eslint-enable */
 
-export default devtools();
+export default devtools()
