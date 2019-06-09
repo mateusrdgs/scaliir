@@ -5,8 +5,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const postStylus = require('poststylus')
 const rupture = require('rupture')
+
 const common = require('./webpack.common')
 
 const generateStatsFile = process.env.ANALYZE_BUNDLE === 'true'
@@ -58,6 +60,10 @@ module.exports = merge(common, {
           use: [rupture(), postStylus(['autoprefixer', 'rucksack-css', 'lost'])],
         },
       },
+    }),
+    new FaviconsWebpackPlugin({
+      logo: path.resolve(__dirname, '../', 'src', 'assets', 'images', 'react.png'),
+      prefix: 'assets/favicons/',
     }),
   ],
   optimization: {
