@@ -1,3 +1,4 @@
+const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
@@ -57,6 +58,8 @@ module.exports = merge(common, {
       test: /\.styl$/,
       options: {
         stylus: {
+          import: [path.resolve('src', 'styles', 'config', 'variables.styl')],
+          preferPathResolver: 'webpack',
           use: [rupture(), postStylus(['autoprefixer', 'rucksack-css', 'lost'])],
         },
       },

@@ -33,6 +33,8 @@ module.exports = merge(common, {
       test: /\.styl$/,
       options: {
         stylus: {
+          import: [path.resolve('src', 'styles', 'config', 'variables.styl')],
+          preferPathResolver: 'webpack',
           use: [rupture(), postStylus(['rucksack-css', 'lost'])],
         },
       },
