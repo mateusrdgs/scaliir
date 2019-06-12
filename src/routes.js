@@ -1,16 +1,13 @@
-import { lazy, Suspense } from 'react';
-import { Route } from 'react-router-dom';
+import { lazy } from 'react'
+import { Route } from 'react-router-dom'
 
-import AppLayout from 'layout/AppLayout';
-import FallbackLoader from 'elements/FallbackLoader';
+import pageNames from 'constants/pagenames'
 
-const routes = (
-  <Suspense fallback={<FallbackLoader />}>
-    <AppLayout>
-      <Route path="/" exact component={lazy(() => import('./pages/Home'))} />
-      <Route path="/about" component={lazy(() => import('./pages/About'))} />
-    </AppLayout>
-  </Suspense>
-);
+const { home, about } = pageNames
 
-export default routes;
+const routes = [
+  <Route path={home.route} exact key={home.name} component={lazy(() => import('./pages/Home'))} />,
+  <Route path={about.route} key={about.name} component={lazy(() => import('./pages/About'))} />,
+]
+
+export default routes
