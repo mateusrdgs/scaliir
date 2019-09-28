@@ -1,4 +1,4 @@
-import createPageNames from 'utils/createPagenames'
+import createPageNames from 'utils/createPagenames';
 
 const pageNames = createPageNames()
 

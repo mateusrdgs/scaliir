@@ -20,4 +20,4 @@ const createPageNames = (rootUrl = '/') => {
   }
 }
 
-module.exports = createPageNames
+export default createPageNames
