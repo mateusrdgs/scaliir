@@ -8,6 +8,7 @@ const common = require('./webpack.common')
 
 module.exports = merge(common, {
   mode: 'development',
+  entry: ['react-hot-loader/patch', './src/main.js'],
   module: {
     rules: [
       {
@@ -29,6 +30,7 @@ module.exports = merge(common, {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
     }),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
       test: /\.styl$/,
       options: {
@@ -43,6 +45,8 @@ module.exports = merge(common, {
   devServer: {
     contentBase: path.resolve(__dirname, '../', 'build'),
     historyApiFallback: true,
+    hot: true,
+    hotOnly: true,
   },
   devtool: 'inline-source-map',
 })

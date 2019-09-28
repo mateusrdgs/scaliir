@@ -1,3 +1,4 @@
+import { AppContainer } from 'react-hot-loader'
 import ReactDOM from 'react-dom'
 import 'normalize.css'
 
@@ -14,18 +15,29 @@ const rootComponentProps = {
 }
 
 const render = Component => ({ ...props }) => {
-  ReactDOM.render(<Component {...props} />, rootEl)
+  ReactDOM.render(
+    <AppContainer>
+      <Component {...props} />
+    </AppContainer>,
+    rootEl
+  )
 }
+
+module.hot.accept('./components/RootComponent', () => {
+  const nextPropsRoutes = require('./routes').default
+  const nextProps = {
+    ...rootComponentProps,
+    routes: nextPropsRoutes,
+  }
+  render(RootComponent)({ ...nextProps })
+})
+module.hot.accept('./routes', () => {
+  const nextPropsRoutes = require('./routes').default
+  const nextProps = {
+    ...rootComponentProps,
+    routes: nextPropsRoutes,
+  }
+  render(RootComponent)({ ...nextProps })
+})
 
 render(RootComponent)({ ...rootComponentProps })
-
-if (process.env.NODE_ENV === 'development' && module.hot) {
-  module.hot.accept('./routes', () => {
-    const nextPropsRoutes = require('./routes').default
-    const nextProps = {
-      ...rootComponentProps,
-      routes: nextPropsRoutes,
-    }
-    render(RootComponent)({ ...nextProps })
-  })
-}
