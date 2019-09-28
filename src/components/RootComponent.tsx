@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import AppLayout from 'layout/AppLayout'
 import FallbackLoader from 'elements/FallbackLoader'
 
-const RootComponent = ({ routes, store }) => {
+const RootComponent = ({ routes, store }): React.ReactElement => {
   return (
     <Provider store={store}>
       <BrowserRouter>

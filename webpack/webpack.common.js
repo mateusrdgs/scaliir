@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/main.tsx',
   output: {
     filename: 'bundle.[name].js',
     path: path.resolve(__dirname, '../', 'build'),
@@ -12,14 +12,15 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.ts(x?)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loaders: ['babel-loader', 'ts-loader'],
       },
     ],
   },
   resolve: {
     modules: [path.resolve(__dirname, '../', 'src'), 'node_modules'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   plugins: [
     new HtmlWebpackPlugin({

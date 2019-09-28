@@ -1,10 +1,11 @@
+import { Action } from 'redux';
 import { handleActions } from 'redux-actions';
 
-export const increment = () => ({
+export const increment = (): Action => ({
   type: 'INCREMENT',
 });
 
-export const decrement = () => ({
+export const decrement = (): Action => ({
   type: 'DECREMENT',
 });
 
