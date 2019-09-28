@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "NODE_ENV=development node_modules/.bin/webpack-dev-server --hot --config webpack/webpack.dev.js",
+    "start": "NODE_ENV=development node_modules/.bin/webpack-dev-server --config webpack/webpack.dev.js",
     "build": "NODE_ENV=production node_modules/.bin/webpack --progress --colors --config webpack/webpack.prod.js",
     "analyzer": "node_modules/.bin/webpack-bundle-analyzer build/stats.json",
     "analyze": "ANALYZE_BUNDLE=true yarn run build && yarn run analyzer"
@@ -40,7 +40,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "poststylus": "^1.0.0",
     "prettier": "1.17.1",
-    "react-hot-loader": "^4.8.4",
+    "react-hot-loader": "^4.12.14",
     "redux-devtools": "^3.5.0",
     "rucksack-css": "^1.0.2",
     "rupture": "^0.7.1",
