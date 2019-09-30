@@ -7,7 +7,7 @@ const startStore = (): Store => {
   const store = createStore(
     rootReducer,
     {},
-    enhancer,
+    enhancer
   );
   return store;
 };
