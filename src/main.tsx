@@ -1,5 +1,5 @@
-import { AppContainer } from 'react-hot-loader'
 import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 import 'normalize.css'
 
 import RootComponent from 'components/RootComponent'
