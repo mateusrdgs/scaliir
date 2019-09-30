@@ -1,14 +1,16 @@
-import noop from 'utils/noop'
+import { identity } from 'utils/helpers'
 
-const isDevelopment = process.env.NODE_ENV === 'development'
+const isDevelopment = !process.env.APP.production;
+const devTools = (window as any).__REDUX_DEVTOOLS_EXTENSION__;
+const reduxDevToolsDefined = () => window && devTools;
 
 /* eslint-disable no-underscore-dangle */
 const devtools =
-  isDevelopment
-    && window
-    && (window as any).__REDUX_DEVTOOLS_EXTENSION__
-    ? (window as any).__REDUX_DEVTOOLS_EXTENSION__
-    : noop
+  isDevelopment && reduxDevToolsDefined()
+    ? devTools
+    : () => identity
 /* eslint-enable */
+
+process.env
 
 export default devtools()
