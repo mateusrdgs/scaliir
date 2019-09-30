@@ -8,8 +8,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "NODE_ENV=development node_modules/.bin/webpack-dev-server --config webpack/webpack.dev.js",
-    "build": "NODE_ENV=production node_modules/.bin/webpack --progress --colors --config webpack/webpack.prod.js",
+    "start": "NODE_ENV=development node_modules/.bin/webpack-dev-server --config webpack/webpack.local.js",
+    "build": "NODE_ENV=production node_modules/.bin/webpack --progress --colors --config webpack/webpack.build.js",
     "analyzer": "node_modules/.bin/webpack-bundle-analyzer build/stats.json",
     "analyze": "ANALYZE_BUNDLE=true yarn run build && yarn run analyzer"
   },

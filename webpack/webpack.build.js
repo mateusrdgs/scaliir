@@ -51,9 +51,6 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin({
       filename: 'bundle.[name].[contenthash].css',
     }),
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production',
-    }),
     new webpack.LoaderOptionsPlugin({
       test: /\.styl$/,
       options: {

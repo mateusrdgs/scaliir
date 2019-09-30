@@ -27,9 +27,6 @@ module.exports = merge(common, {
     },
   },
   plugins: [
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
-    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
       test: /\.styl$/,
@@ -48,5 +45,5 @@ module.exports = merge(common, {
     hot: true,
     hotOnly: true,
   },
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-eval-source-map',
 })
