@@ -13,18 +13,18 @@ const createPageNames = (rootUrl = '/'): Pagenames => {
     root: {
       path: `${rootUrl}`,
       route: `${rootUrl}`,
-      name: 'root',
+      name: 'root'
     },
     home: {
       path: `${rootUrl}`,
       route: `${rootUrl}`,
-      name: 'home',
+      name: 'home'
     },
     about: {
       path: `${rootUrl}about/`,
       route: `${rootUrl}about`,
-      name: 'about',
-    },
+      name: 'about'
+    }
   }
 }
 
