@@ -1,19 +1,17 @@
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-    node: true,
+  parser: '@typescript-eslint/parser',
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'prettier',
+    'prettier/@typescript-eslint'
+  ],
+  settings: {
+    react: {
+      version: 'detect'
+    }
   },
-  extends: ['react-app'],
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
-  plugins: ['react'],
   rules: {
-    'react/react-in-jsx-scope': 'off',
-  },
+    'react/react-in-jsx-scope': 0
+  }
 }

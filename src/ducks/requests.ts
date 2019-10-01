@@ -5,8 +5,8 @@ import { handleActions } from 'redux-actions';
 import axios from 'utils/axios'
 
 interface HttpRequestBody extends AxiosRequestConfig {
-  key?: string,
-  mock?: any
+  key?: string;
+  mock?: object;
 }
 
 const initialState = {};
@@ -18,14 +18,14 @@ export const request = (payload: HttpRequestBody): AnyAction => {
   }
 }
 
-export const response = (payload: any): AnyAction => {
+export const response = (payload: object): AnyAction => {
   return {
     type: 'RESPONSE',
     payload
   }
 }
 
-export const responseError = (payload: any): AnyAction => {
+export const responseError = (payload: object): AnyAction => {
   return {
     type: 'RESPONSE_ERROR',
     payload
@@ -33,9 +33,9 @@ export const responseError = (payload: any): AnyAction => {
 }
 
 export const httpRequest = ({ key, mock, ...config }: HttpRequestBody) => {
-  return (dispatch) => {
+  return (dispatch): Promise<{}> => {
     let mockTimeout;
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject): void => {
       if (mock) {
         if (key) {
           dispatch(request({ key, ...config }));
@@ -50,7 +50,7 @@ export const httpRequest = ({ key, mock, ...config }: HttpRequestBody) => {
       } else {
         if (key) {
           dispatch(request({ key, ...config }));
-          return axios.request((config))
+          axios.request((config))
             .then((res) => {
               dispatch(response({ key, ...res }))
               resolve(res);
@@ -60,7 +60,7 @@ export const httpRequest = ({ key, mock, ...config }: HttpRequestBody) => {
               reject(err);
             });
         } else {
-          return axios(config)
+          axios(config)
             .then(resolve)
             .catch(reject)
         }
