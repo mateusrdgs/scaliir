@@ -1,11 +1,11 @@
 interface Pagename {
-  path: string
-  route: string
-  name: string
+  path: string;
+  route: string;
+  name: string;
 }
 
 interface Pagenames {
-  [name: string]: Pagename
+  [name: string]: Pagename;
 }
 
 const createPageNames = (rootUrl = '/'): Pagenames => {
@@ -13,19 +13,19 @@ const createPageNames = (rootUrl = '/'): Pagenames => {
     root: {
       path: `${rootUrl}`,
       route: `${rootUrl}`,
-      name: 'root'
+      name: 'root',
     },
     home: {
       path: `${rootUrl}`,
       route: `${rootUrl}`,
-      name: 'home'
+      name: 'home',
     },
     about: {
       path: `${rootUrl}about/`,
       route: `${rootUrl}about`,
-      name: 'about'
-    }
-  }
-}
+      name: 'about',
+    },
+  };
+};
 
-export default createPageNames
+export default createPageNames;
