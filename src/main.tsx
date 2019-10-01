@@ -10,39 +10,25 @@ import './styles/main.styl'
 
 const rootEl = document.getElementById('root')
 const store = startStore()
-const rootComponentProps = {
-  routes,
-  store,
-}
 
-const render = (rootComponent: React.ReactElement) => {
-  return (
-    ReactDOM.render(
-      <AppContainer>
-        { rootComponent }
-      </AppContainer>,
-      rootEl
-    )
+const render = (rootComponent: React.ReactElement): void => {
+  ReactDOM.render(
+    <AppContainer>
+      { rootComponent }
+    </AppContainer>,
+    rootEl
   )
 }
 
 if (module.hot) {
   module.hot.accept('./components/RootComponent', () => {
-    const nextPropsRoutes = require('./routes').default
-    const nextProps = {
-      ...rootComponentProps,
-      routes: nextPropsRoutes,
-    }
-    render(<RootComponent {...nextProps} />);
+    const nextRoutes = require('./routes').default;
+    render(<RootComponent store={store} routes={nextRoutes} />);
   })
   module.hot.accept('./routes', () => {
-    const nextPropsRoutes = require('./routes').default
-    const nextProps = {
-      ...rootComponentProps,
-      routes: nextPropsRoutes,
-    }
-    render(<RootComponent {...nextProps} />);
+    const nextRoutes = require('./routes').default
+    render(<RootComponent store={store} routes={nextRoutes} />);
   })
 }
 
-render(<RootComponent {...rootComponentProps} />);
+render(<RootComponent store={store} routes={routes} />);

@@ -1,4 +1,14 @@
-const createPageNames = (rootUrl = '/') => {
+interface Pagename {
+  path: string
+  route: string
+  name: string
+}
+
+interface Pagenames {
+  [name: string]: Pagename
+}
+
+const createPageNames = (rootUrl = '/'): Pagenames => {
   return {
     root: {
       path: `${rootUrl}`,
@@ -9,13 +19,11 @@ const createPageNames = (rootUrl = '/') => {
       path: `${rootUrl}`,
       route: `${rootUrl}`,
       name: 'home',
-      page: './pages/Home',
     },
     about: {
       path: `${rootUrl}about/`,
       route: `${rootUrl}about`,
       name: 'about',
-      page: './pages/About',
     },
   }
 }
