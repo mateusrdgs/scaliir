@@ -28,4 +28,4 @@ const createPageNames = (rootUrl = '/'): Pagenames => {
   };
 };
 
-export default createPageNames;
+module.exports = createPageNames;

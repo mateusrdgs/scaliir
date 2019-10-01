@@ -1,5 +1,6 @@
-import createPageNames from 'utils/createPagenames';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const createPageNames = require('utils/createPagenames');
 
-const pageNames = createPageNames()
+const pageNames = createPageNames();
 
-export default pageNames
+export default pageNames;
