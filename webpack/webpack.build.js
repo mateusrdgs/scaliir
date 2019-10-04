@@ -1,46 +1,21 @@
-const path = require('path')
-const webpack = require('webpack')
-const merge = require('webpack-merge')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const TerserWebpackPlugin = require('terser-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
-const postStylus = require('poststylus')
-const rupture = require('rupture')
+const path = require('path');
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
-const common = require('./webpack.common')
+const common = require('./webpack.common');
 
-const generateStatsFile = process.env.ANALYZE_BUNDLE === 'true'
+const generateStatsFile = process.env.ANALYZE_BUNDLE === 'true';
 
 module.exports = merge(common, {
   mode: 'production',
   output: {
     filename: 'bundle.[name].[contenthash].js',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          'css-loader',
-        ],
-      },
-      {
-        test: /\.styl$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          'css-loader',
-          'stylus-loader',
-        ],
-      },
-    ],
   },
   plugins: [
     new BundleAnalyzerPlugin({
@@ -50,16 +25,6 @@ module.exports = merge(common, {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'bundle.[name].[contenthash].css',
-    }),
-    new webpack.LoaderOptionsPlugin({
-      test: /\.styl$/,
-      options: {
-        stylus: {
-          import: [path.resolve('src', 'styles', 'config', 'variables.styl')],
-          preferPathResolver: 'webpack',
-          use: [rupture(), postStylus(['autoprefixer', 'rucksack-css', 'lost'])],
-        },
-      },
     }),
     new FaviconsWebpackPlugin({
       logo: path.resolve(__dirname, '../', 'src', 'assets', 'images', 'react.png'),
@@ -101,4 +66,4 @@ module.exports = merge(common, {
       }),
     ],
   },
-})
+});
