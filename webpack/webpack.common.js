@@ -1,13 +1,18 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const merge = require('webpack-merge')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const merge = require('webpack-merge');
+const rupture = require('rupture');
+const postStylus = require('poststylus');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const environment = require('../config/environment');
 
-const environment = require('../config/environment')
-const NODE_ENV = process.env.NODE_ENV
-
-const APP = merge(environment.default, environment[NODE_ENV])
+const NODE_ENV = process.env.NODE_ENV;
+const isDevelopment = NODE_ENV === 'development';
+const APP = merge(environment.development, environment[NODE_ENV]);
+const styleLoader = isDevelopment ? 'style-loader' : { loader: MiniCssExtractPlugin.loader };
+const cssDefaultLoaders = [styleLoader, 'css-loader'];
 
 module.exports = {
   entry: './src/main.tsx',
@@ -22,6 +27,14 @@ module.exports = {
         exclude: /node_modules/,
         loaders: ['babel-loader', 'ts-loader'],
       },
+      {
+        test: /\.css$/,
+        use: [...cssDefaultLoaders],
+      },
+      {
+        test: /\.styl$/,
+        use: [...cssDefaultLoaders, 'stylus-loader'],
+      },
     ],
   },
   resolve: {
@@ -33,11 +46,21 @@ module.exports = {
       NODE_ENV: NODE_ENV,
       APP: APP,
     }),
-    new HtmlWebpackPlugin({
-      template: './template/index.html',
+    new webpack.LoaderOptionsPlugin({
+      test: /\.styl$/,
+      options: {
+        stylus: {
+          import: [path.resolve('src', 'styles', 'config', 'variables.styl')],
+          preferPathResolver: 'webpack',
+          use: [rupture(), postStylus(['autoprefixer'])],
+        },
+      },
     }),
     new webpack.ProvidePlugin({
       React: 'react',
+    }),
+    new HtmlWebpackPlugin({
+      template: './template/index.html',
     }),
     new CopyWebpackPlugin([
       {
@@ -46,4 +69,4 @@ module.exports = {
       },
     ]),
   ],
-}
+};

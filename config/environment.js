@@ -1,14 +1,12 @@
 const environment = {
-  default: {
-    production: false,
-  },
   development: {
     name: 'development',
+    production: false,
   },
   production: {
     name: 'production',
     production: true,
   },
-}
+};
 
-module.exports = environment
+module.exports = environment;
