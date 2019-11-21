@@ -4,6 +4,8 @@ const merge = require('webpack-merge');
 
 const common = require('./webpack.common');
 
+const cwd = process.cwd();
+
 module.exports = merge(common, {
   mode: 'development',
   entry: ['react-hot-loader/patch', './src/main.tsx'],
@@ -14,7 +16,7 @@ module.exports = merge(common, {
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
-    contentBase: path.resolve(__dirname, '../', 'build'),
+    contentBase: path.resolve(cwd, 'build'),
     historyApiFallback: true,
     hot: true,
     hotOnly: true,

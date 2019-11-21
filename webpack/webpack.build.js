@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -10,6 +9,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const common = require('./webpack.common');
 
+const cwd = process.cwd();
 const generateStatsFile = process.env.ANALYZE_BUNDLE === 'true';
 
 module.exports = merge(common, {
@@ -27,7 +27,7 @@ module.exports = merge(common, {
       filename: 'bundle.[name].[contenthash].css',
     }),
     new FaviconsWebpackPlugin({
-      logo: path.resolve(__dirname, '../', 'src', 'assets', 'images', 'react.png'),
+      logo: path.resolve(cwd, 'src', 'assets', 'images', 'react.png'),
       prefix: 'assets/favicons/',
     }),
   ],

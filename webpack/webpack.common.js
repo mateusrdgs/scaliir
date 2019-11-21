@@ -8,6 +8,7 @@ const postStylus = require('poststylus');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const environment = require('../config/environment');
 
+const cwd = process.cwd();
 const NODE_ENV = process.env.NODE_ENV;
 const isDevelopment = NODE_ENV === 'development';
 const APP = merge(environment.development, environment[NODE_ENV]);
@@ -18,7 +19,7 @@ module.exports = {
   entry: './src/main.tsx',
   output: {
     filename: 'bundle.[name].js',
-    path: path.resolve(__dirname, '../', 'build'),
+    path: path.resolve(cwd, 'build'),
   },
   module: {
     rules: [
@@ -38,7 +39,7 @@ module.exports = {
     ],
   },
   resolve: {
-    modules: [path.resolve(__dirname, '../', 'src'), 'node_modules'],
+    modules: [path.resolve(cwd, 'src'), 'node_modules'],
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   plugins: [
@@ -64,8 +65,8 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../', 'src', 'assets'),
-        to: path.resolve(__dirname, '../', 'build', 'assets'),
+        from: path.resolve(cwd, 'src', 'assets'),
+        to: path.resolve(cwd, 'build', 'assets'),
       },
     ]),
   ],
