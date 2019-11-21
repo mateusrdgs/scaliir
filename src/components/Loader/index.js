@@ -1,6 +1,6 @@
 import './loader.styl';
 
-const Loader = (): React.ReactElement => {
+const Loader = () => {
   return <div className='loader' />;
 };
 
