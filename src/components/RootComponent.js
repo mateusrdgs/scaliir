@@ -1,12 +1,11 @@
 import { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { Store } from 'redux';
 
 import AppLayout from 'layout/AppLayout';
 import FallbackLoader from 'components/FallbackLoader';
 
-const RootComponent = ({ routes, store }: { routes: any; store: Store }): React.ReactElement => {
+const RootComponent = ({ routes, store }) => {
   return (
     <Provider store={store}>
       <BrowserRouter>

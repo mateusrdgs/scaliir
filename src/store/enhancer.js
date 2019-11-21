@@ -5,7 +5,7 @@ import devtools from './devtools';
 
 const enhancer = compose(
   applyMiddleware(thunk),
-  devtools
+  devtools,
 );
 
 export default enhancer;

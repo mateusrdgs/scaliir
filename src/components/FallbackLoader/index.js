@@ -2,7 +2,7 @@ import Loader from 'components/Loader';
 
 import './fallback-loader.styl';
 
-const FallbackLoader = (): React.ReactElement => {
+const FallbackLoader = () => {
   return (
     <div className='fallback-loader'>
       <Loader />

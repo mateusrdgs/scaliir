@@ -8,7 +8,7 @@ const cwd = process.cwd();
 
 module.exports = merge(common, {
   mode: 'development',
-  entry: ['react-hot-loader/patch', './src/main.tsx'],
+  entry: ['react-hot-loader/patch', './src/main.js'],
   resolve: {
     alias: {
       'react-dom': '@hot-loader/react-dom',
