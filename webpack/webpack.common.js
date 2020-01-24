@@ -16,7 +16,7 @@ const styleLoader = isDevelopment ? 'style-loader' : { loader: MiniCssExtractPlu
 const cssDefaultLoaders = [styleLoader, 'css-loader'];
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/main.tsx',
   output: {
     filename: 'bundle.[name].js',
     path: path.resolve(cwd, 'build'),
@@ -24,9 +24,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js(x?)$/,
+        test: /\.ts(x?)$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader'],
+        loaders: ['babel-loader', 'ts-loader'],
       },
       {
         test: /\.css$/,
@@ -40,7 +40,7 @@ module.exports = {
   },
   resolve: {
     modules: [path.resolve(cwd, 'src'), 'node_modules'],
-    extensions: ['.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   plugins: [
     new webpack.EnvironmentPlugin({

@@ -5,12 +5,13 @@ import 'normalize.css';
 import RootComponent from 'components/RootComponent';
 import startStore from './store';
 import routes from './routes';
+import 'utils/globals';
 import './styles/main.styl';
 
 const rootEl = document.getElementById('root');
 const store = startStore();
 
-const render = rootComponent => {
+const render = (rootComponent: React.ReactElement): void => {
   ReactDOM.render(<AppContainer>{rootComponent}</AppContainer>, rootEl);
 };
 

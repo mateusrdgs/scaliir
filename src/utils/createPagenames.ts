@@ -1,4 +1,14 @@
-const createPageNames = (rootUrl = '/') => {
+interface Pagename {
+  path: string;
+  route: string;
+  name: string;
+}
+
+interface Pagenames {
+  [name: string]: Pagename;
+}
+
+const createPageNames = (rootUrl = '/'): Pagenames => {
   return {
     root: {
       path: `${rootUrl}`,
