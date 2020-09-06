@@ -12,11 +12,13 @@ const cwd = process.cwd();
 const NODE_ENV = process.env.NODE_ENV;
 const isDevelopment = NODE_ENV === 'development';
 const APP = merge(environment.development, environment[NODE_ENV]);
+
 const styleLoader = isDevelopment ? 'style-loader' : { loader: MiniCssExtractPlugin.loader };
 const cssDefaultLoaders = [styleLoader, 'css-loader'];
+const babelLoaderPlugins = isDevelopment ? [require.resolve('react-refresh/babel')] : [];
 
 module.exports = {
-  entry: './src/main.tsx',
+  entry: path.resolve(cwd, 'src', 'main.tsx'),
   output: {
     filename: 'bundle.[name].js',
     path: path.resolve(cwd, 'build'),
@@ -26,7 +28,15 @@ module.exports = {
       {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader', 'ts-loader'],
+        loaders: [
+          {
+            loader: 'babel-loader',
+            options: {
+              plugins: [...babelLoaderPlugins],
+            },
+          },
+          'ts-loader',
+        ],
       },
       {
         test: /\.css$/,
@@ -51,7 +61,7 @@ module.exports = {
       test: /\.styl$/,
       options: {
         stylus: {
-          import: [path.resolve('src', 'styles', 'config', 'variables.styl')],
+          import: [path.resolve(cwd, 'src', 'styles', 'config', 'variables.styl')],
           preferPathResolver: 'webpack',
           use: [rupture(), postStylus(['autoprefixer'])],
         },
