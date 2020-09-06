@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
 import 'normalize.css';
 
 import RootComponent from 'components/RootComponent';
@@ -12,18 +11,7 @@ const rootEl = document.getElementById('root');
 const store = startStore();
 
 const render = (rootComponent: React.ReactElement): void => {
-  ReactDOM.render(<AppContainer>{rootComponent}</AppContainer>, rootEl);
+  ReactDOM.render(rootComponent, rootEl);
 };
-
-if (module.hot) {
-  module.hot.accept('./components/RootComponent', () => {
-    const nextRoutes = require('./routes').default;
-    render(<RootComponent store={store} routes={nextRoutes} />);
-  });
-  module.hot.accept('./routes', () => {
-    const nextRoutes = require('./routes').default;
-    render(<RootComponent store={store} routes={nextRoutes} />);
-  });
-}
 
 render(<RootComponent store={store} routes={routes} />);
