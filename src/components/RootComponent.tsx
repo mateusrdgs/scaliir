@@ -6,12 +6,17 @@ import { Store } from 'redux';
 import AppLayout from 'layout/AppLayout';
 import FallbackLoader from 'components/FallbackLoader';
 
-const RootComponent = ({ routes, store }: { routes: any; store: Store }): React.ReactElement => {
+interface Props {
+  children: React.ReactNode[];
+  store: Store;
+}
+
+const RootComponent = ({ store, children }: Props): React.ReactElement => {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Suspense fallback={<FallbackLoader />}>
-          <AppLayout>{routes}</AppLayout>
+          <AppLayout>{children}</AppLayout>
         </Suspense>
       </BrowserRouter>
     </Provider>

@@ -1,7 +1,11 @@
 import './app-layout.styl';
 
-const AppLayout = ({ children }: { children: React.ReactChildren }): React.ReactElement => {
-  return <main className='app-layout'>{children}</main>;
+interface Props {
+  children: React.ReactNode;
+}
+
+const AppLayout = (props: Props): React.ReactElement<Props> => {
+  return <main className='app-layout' {...props} />;
 };
 
 export default AppLayout;
