@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import requests from './requests';
+import counter, { CounterState } from './counter';
 
-const rootReducer = combineReducers({
-  requests,
+export interface State {
+  counter: CounterState;
+}
+
+export default combineReducers<State>({
+  counter,
 });
-
-export default rootReducer;
