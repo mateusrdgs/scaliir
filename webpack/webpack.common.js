@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const merge = require('webpack-merge');
 const rupture = require('rupture');
 const postStylus = require('poststylus');
@@ -28,7 +27,7 @@ module.exports = {
       {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
-        loaders: [
+        use: [
           {
             loader: 'babel-loader',
             options: {
@@ -45,6 +44,13 @@ module.exports = {
       {
         test: /\.styl$/,
         use: [...cssDefaultLoaders, 'stylus-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'assets',
+        },
       },
     ],
   },
@@ -74,11 +80,5 @@ module.exports = {
       template: './template/index.html',
       filename: './index.html',
     }),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(cwd, 'src', 'assets'),
-        to: path.resolve(cwd, 'build', 'assets'),
-      },
-    ]),
   ],
 };
